@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Паста Карбонара — классический итальянский рецепт с видео | Кулинарная студия</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fefaf5;
+            color: #1f1c19;
+            overflow-x: hidden;
+        }
+
+        /* Фоновые эффекты */
+        .design-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fcf6ef;
+            z-index: -3;
+        }
+        .gradient-orb {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, #ffdfb5, #fbe6d0, transparent);
+            filter: blur(90px);
+            opacity: 0.5;
+            top: -200px;
+            right: -200px;
+            z-index: -2;
+            animation: orbMove 22s infinite alternate;
+        }
+        .gradient-orb2 {
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, #e8cfb5, #f7e5d4, transparent);
+            filter: blur(100px);
+            opacity: 0.4;
+            bottom: -250px;
+            left: -150px;
+            z-index: -2;
+            animation: orbMove2 25s infinite alternate;
+        }
+        @keyframes orbMove {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, -60px) scale(1.2); }
+        }
+        @keyframes orbMove2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-70px, 80px) scale(1.3); }
+        }
+        .micro-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(#e5d9cd 0.5px, transparent 0.5px);
+            background-size: 32px 32px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Хедер */
+        .recipe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 1.2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #eedfcb;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #c28554;
+            transition: 0.2s;
+            background: #f5ede4;
+            padding: 8px 18px;
+            border-radius: 60px;
+        }
+        .back-link:hover {
+            background: #e8d9cd;
+            transform: translateX(-3px);
+        }
+        .logo-small {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(125deg, #b27a50, #d99e6c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* Основной контент рецепта */
+        .recipe-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin: 1rem 0 2rem;
+            background: rgba(255, 252, 248, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 2rem;
+            border: 1px solid #f0e2d4;
+        }
+        /* Фото-блок */
+        .recipe-photo {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fdf5ec;
+            border-radius: 40px;
+            padding: 1rem;
+            min-height: 200px;
+            overflow: hidden;
+        }
+        .recipe-photo img {
+            width: 100%;
+            height: auto;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 32px;
+            display: block;
+        }
+        .recipe-info {
+            flex: 2;
+        }
+        .recipe-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #4d3422;
+            margin-bottom: 0.5rem;
+        }
+        .recipe-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .meta-chip {
+            background: #f5ede4;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .rating {
+            color: #e2a16c;
+            font-size: 0.9rem;
+        }
+        .description {
+            font-size: 1rem;
+            color: #8f735b;
+            line-height: 1.5;
+            margin: 1rem 0;
+        }
+
+        /* Блок БЖУ */
+        .nutrition-box {
+            background: #faf5ef;
+            border-radius: 28px;
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .nutri-card {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+        }
+        .nutri-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #c28554;
+        }
+        .nutri-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8c6e54;
+        }
+
+        /* Две колонки */
+        .recipe-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .ingredients {
+            flex: 1;
+            background: #fffffffa;
+            border-radius: 32px;
+            padding: 1.5rem;
+            border: 1px solid #efdfcf;
+        }
+        .ingredients h2, .steps h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4d3422;
+        }
+        .ingredients ul {
+            list-style: none;
+            padding: 0;
+        }
+        .ingredients li {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #eedfcb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ingredients li i {
+            color: #c28554;
+            width: 24px;
+        }
+        .steps {
+            flex: 2;
+            background: #fffffffa;
+            border-radius: 32px;
+            padding: 1.5rem;
+            border: 1px solid #efdfcf;
+        }
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f5ede4;
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #f5ede4;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #c28554;
+        }
+        .step-text {
+            flex: 1;
+            color: #5c4838;
+            line-height: 1.5;
+        }
+        .tips {
+            background: #faf5ef;
+            border-radius: 28px;
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0 1.5rem;
+            border-left: 4px solid #d4a373;
+        }
+        .tips h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #4d3422;
+        }
+        .tips p {
+            font-size: 0.85rem;
+            color: #7c6248;
+        }
+
+        /* ВИДЕО-БЛОК */
+        .video-section {
+            margin: 1rem 0 2rem;
+            background: #fffffffa;
+            border-radius: 32px;
+            padding: 1.5rem;
+            border: 1px solid #efdfcf;
+        }
+        .video-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4d3422;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #1a1a1a;
+            aspect-ratio: 16 / 9;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-caption {
+            text-align: center;
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: #a88260;
+        }
+        .alternative-video {
+            background: #fef8ef;
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            text-align: center;
+            border: 1px dashed #d4a373;
+        }
+        .alternative-video a {
+            color: #c28554;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .alternative-video a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid #eedfcb;
+            margin-top: 2rem;
+            color: #a88260;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 800px) {
+            .container { padding: 0 20px; }
+            .recipe-hero { flex-direction: column; text-align: center; }
+            .nutrition-box { flex-direction: column; }
+            .video-container { aspect-ratio: 16 / 9; }
+            .recipe-photo { min-height: 200px; }
+        }
+    </style>
+</head>
+<body>
+<div class="design-bg"></div>
+<div class="gradient-orb"></div>
+<div class="gradient-orb2"></div>
+<div class="micro-grid"></div>
+
+<div class="container">
+    <header class="recipe-header">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Назад к рецептам</a>
+        <div class="logo-small">Кулинарная студия</div>
+    </header>
+
+    <!-- Блок с основными данными рецепта -->
+    <div class="recipe-hero">
+        <div class="recipe-photo" id="recipePhotoBlock">
+            <!-- ЗДЕСЬ ВСТАВЬТЕ ВАШУ ФОТОГРАФИЮ ДЛЯ ПАСТЫ КАРБОНАРА -->
+            <img id="recipePhotoImg" src="images/ris-s-ovoschami.jpg" alt="Паста Карбонара" onerror="this.src='https://placehold.co/600x400/fdf5ec/c28554?text=Паста+Карбонара'">
+        </div>
+        <div class="recipe-info">
+            <h1>Паста Карбонара</h1>
+            <div class="recipe-meta">
+                <span class="meta-chip"><i class="fas fa-clock"></i> 20 минут</span>
+                <span class="meta-chip"><i class="fas fa-chart-line"></i> Средняя</span>
+                <span class="meta-chip"><i class="fas fa-tag"></i> Ужин</span>
+                <span class="meta-chip"><i class="fas fa-utensils"></i> Мясное</span>
+                <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+            </div>
+            <div class="description">
+                Классическая итальянская паста Карбонара — спагетти с хрустящим панчеттой (гуанчиале), 
+                нежным яичным соусом и пармезаном. Настоящий римский рецепт без сливок!
+            </div>
+            <div class="nutrition-box">
+                <div class="nutri-card"><div class="nutri-value">680</div><div class="nutri-label">ккал</div></div>
+                <div class="nutri-card"><div class="nutri-value">28 г</div><div class="nutri-label">Белки</div></div>
+                <div class="nutri-card"><div class="nutri-value">38 г</div><div class="nutri-label">Жиры</div></div>
+                <div class="nutri-card"><div class="nutri-value">58 г</div><div class="nutri-label">Углеводы</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Детали рецепта: ингредиенты и приготовление -->
+    <div class="recipe-columns">
+        <div class="ingredients">
+            <h2><i class="fas fa-shopping-basket"></i> Ингредиенты</h2>
+            <ul>
+                <li><i class="fas fa-utensils"></i> Спагетти — 400 г</li>
+                <li><i class="fas fa-bacon"></i> Панчетта или гуанчиале — 150 г</li>
+                <li><i class="fas fa-egg"></i> Яйца — 3 шт.</li>
+                <li><i class="fas fa-egg"></i> Желтки — 2 шт.</li>
+                <li><i class="fas fa-cheese"></i> Пармезан (или Пекорино Романо) — 100 г</li>
+                <li><i class="fas fa-cheese"></i> Пекорино Романо — 50 г (по желанию)</li>
+                <li><i class="fas fa-oil-can"></i> Масло оливковое — 1 ст. ложка</li>
+                <li><i class="fas fa-salt-shaker"></i> Соль, чёрный перец — по вкусу</li>
+                <li><i class="fas fa-garlic"></i> Чеснок — 1 зубчик (по желанию)</li>
+            </ul>
+        </div>
+        <div class="steps">
+            <h2><i class="fas fa-list-ol"></i> Приготовление</h2>
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-text">В большой кастрюле вскипятите воду, добавьте соль (10 г на литр). Отварите спагетти до состояния al dente (на 1-2 минуты меньше, чем указано на упаковке).</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-text">Пока паста варится, нарежьте панчетту небольшими кубиками или полосками.</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-text">В сковороде разогрейте оливковое масло, обжарьте панчетту до хрустящей корочки (5-7 минут). При желании добавьте зубчик чеснока для аромата.</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-text">В миске смешайте яйца, желтки, тёртый пармезан, пекорино и большое количество свежемолотого чёрного перца. Не солите — сыр и панчетта уже солёные.</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">5</div>
+                <div class="step-text">Когда спагетти сварятся, сохраните 1 стакан воды от пасты. Слейте воду и быстро переложите горячие спагетти в сковороду с панчеттой. Перемешайте.</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">6</div>
+                <div class="step-text">Снимите сковороду с огня (это важно, чтобы яйца не свернулись!). Влейте яично-сырную смесь и быстро перемешайте, добавив немного воды от пасты для кремовой текстуры.</div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">7</div>
+                <div class="step-text">Подавайте немедленно, посыпав дополнительным пармезаном и чёрным перцем. Приятного аппетита!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Советы -->
+    <div class="tips">
+        <h3><i class="fas fa-lightbulb"></i> Советы к рецепту</h3>
+        <p>В классической карбонаре никогда не используют сливки — кремовая текстура получается благодаря смеси яиц, сыра и воды от пасты. Используйте оригинальное итальянское мясо — гуанчиале (вяленая свиная щёчка) или панчетту. Обязательно свежемолотый чёрный перец — он придаёт блюду характерный вкус. Подавайте сразу, пока паста горячая!</p>
+    </div>
+
+    <!-- ВИДЕО-БЛОК -->
+    <div class="video-section">
+        <h2><i class="fas fa-play-circle"></i> Видео-рецепт</h2>
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/5I6Kj9J8wXY?si=10_carbonara" 
+                title="YouTube video player: Как приготовить пасту Карбонара"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="video-caption">
+            <i class="fas fa-camera"></i> Наглядный видео-рецепт — готовьте вместе с нами!
+        </div>
+        <div class="alternative-video">
+            <i class="fas fa-link"></i> Ссылка на видео: 
+            <a href="https://www.youtube.com/watch?v=5I6Kj9J8wXY" target="_blank">https://www.youtube.com/watch?v=5I6Kj9J8wXY</a>
+            <br><small style="color: #b48a64;">*Если видео не загружается, нажмите на ссылку</small>
+        </div>
+    </div>
+
+    <footer>
+        <p>Кулинарная студия — рецепты с любовью, видео-инструкциями и полным расчётом БЖУ</p>
+        <p style="font-size: 0.7rem; margin-top: 0.5rem;">© 2026 | Рецепт #10: Паста Карбонара</p>
+    </footer>
+</div>
+
+<!-- Скрипт для подстановки фото из переменной -->
+<script>
+    // ==================================================
+    // ⭐⭐⭐ ДЛЯ ВСТАВКИ ФОТОГРАФИИ — ЗАМЕНИТЕ ЭТУ ПЕРЕМЕННУЮ ⭐⭐⭐
+    // ==================================================
+    // Просто укажите путь к вашей картинке (можно относительный или абсолютный URL)
+    const RECIPE_PHOTO_URL = "images/ris-s-ovoschami.jpg";
+    // Примеры:
+    // const RECIPE_PHOTO_URL = "images/ris-s-ovoschami.jpg";
+    // const RECIPE_PHOTO_URL = "images/ris-s-ovoschami.jpg";
+    // ==================================================
+    
+    const photoImg = document.getElementById('recipePhotoImg');
+    if (photoImg) {
+        photoImg.src = RECIPE_PHOTO_URL;
+        photoImg.onerror = function() {
+            this.src = "https://placehold.co/600x400/fdf5ec/c28554?text=Паста+Карбонара";
+            this.alt = "Изображение не найдено";
+        };
+    }
+</script>
+</body>
+</html>
